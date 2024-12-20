@@ -1,0 +1,184 @@
+@font-face {
+  font-family: 'GangwonEduPowerExtraBoldA';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 전체 스크롤바 스타일 설정 */
+::-webkit-scrollbar {
+  width: 8px; /* 스크롤바의 너비 */
+  height: 8px; /* 가로 스크롤바의 높이 */
+}
+
+/* 스크롤바의 트랙 (배경) */
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* 트랙의 색상 */
+  border-radius: 4px; /* 트랙의 모서리를 둥글게 */
+}
+
+/* 스크롤바의 핸들 (움직이는 부분) */
+::-webkit-scrollbar-thumb {
+  background: #5a5f59;
+  border-radius: 4px; /* 핸들의 모서리를 둥글게 */
+  border: 2px solid #f0f0f0; /* 트랙과 분리된 느낌 */
+}
+
+/* 스크롤바 핸들에 호버 효과 */
+::-webkit-scrollbar-thumb:hover {
+  background: #212529;
+}
+
+/* 가로 스크롤바 */
+::-webkit-scrollbar-horizontal {
+  height: 6px;
+}
+
+/* 세로 스크롤바 */
+::-webkit-scrollbar-vertical {
+  width: 6px;
+}
+
+
+/* 메세지 색상 지정 */
+.confirm{ 
+  color : green; 
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+
+.error{ 
+  color : red; 
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+
+body {
+  font-family: GangwonEduPowerExtraBoldA;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000;
+}
+
+.register-form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  overflow: auto;
+  max-height: 500px;
+}
+
+.register-form h1 {
+  margin: 0 0 1rem;
+  font-size: 24px;
+  text-align: center;
+  color: #000;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-top: 20px;
+  color: #000;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 94%;
+  padding: 0.75rem;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #212529;
+}
+
+.id-section {
+  display: flex;
+  gap: 10px;
+}
+
+.id-section input {
+  flex-basis: 70%;
+}
+
+.id-section .btn {
+  flex-basis: 30%;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 16px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.btn:hover {
+  background-color: #333;
+}
+.footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 14px;
+  color: #666;
+}
+.footer a {
+  color: #000;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+} 
+.signUp-input-area {
+  display:flex;
+  width: 100%;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.signUp-input-area input {
+  width: 100%;
+}
+
+#postcode{
+  width: 80%;
+}
+
+#searchAddress {
+  display: block;
+  width: 20%;
+  font-size: 16px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#searchAddress:hover {
+  background-color: #333;
+}
