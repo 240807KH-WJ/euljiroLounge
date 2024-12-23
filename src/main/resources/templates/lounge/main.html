@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>을지로 라운지</title>
+    <link rel="stylesheet" href="/css/lounge.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>을지로라운지</h1>
+      <nav>
+        <ul>
+          <th:block th:each="postType : ${application.postTypeList}">
+            <li>
+              <a th:text="${postType.postTypeName}"
+                 th:href="@{/post/{postCode}(postCode = ${postType.postCode})}">
+                 게시판이름
+               </a>
+            </li>
+          </th:block>
+          <li>상담센터 찾기</li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="menu-container">
+      <div class="menu-grid">
+        <div class="menu-item">심리상담</div>
+        <div class="menu-item">마인드 포스팃</div>
+        <div class="menu-item">문의 게시판</div>
+        <div class="menu-item">상담센터 찾기</div>
+      </div>
+
+      <button class="submit-button">
+        <i class="icon">✏️</i> 나의 고민 나누기
+      </button>
+    </div>
+
+    <div class="social-section">
+      <div class="social-grid">
+        <div class="social-box"></div>
+        <div class="social-box"></div>
+      </div>
+      <div class="social-icons">
+        <img src="/images/instagram.png" alt="Instagram" class="social-icon" />
+        <img src="/images/line.png" alt="Line" class="social-icon" />
+      </div>
+    </div>
+  </body>
+</html>

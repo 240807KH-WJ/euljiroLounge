@@ -2,6 +2,8 @@ package com.lounge.euljiro.member.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.lounge.euljiro.member.model.dto.Member;
+
 @Mapper
 public interface MemberMapper {
 
@@ -16,5 +18,17 @@ public interface MemberMapper {
 	 * @return
 	 */
 	int checkDupNickname(String memberNickname);
+
+	/** 회원가입
+	 * @param inputMember
+	 * @return
+	 */
+	int register(Member inputMember);
+
+	/** 로그인
+	 * @param memberId
+	 * @return
+	 */
+	Member login(String memberId);
 
 }

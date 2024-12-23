@@ -9,7 +9,7 @@
   </head>
   <body>
     <div class="container">
-      <form class="register-form" action="/register" method="post">
+      <form id="signUpForm" class="register-form" action="/member/register" method="post">
         <h1>을지로 라운지 회원가입</h1>
 
         <div class="form-group">
@@ -43,7 +43,7 @@
             type="password"
             id="memberPw"
             name="memberPw"
-            placeholder="영어대소문자,특수문자 포함 6~20글자"
+            placeholder="영어,숫자,특수문자 포함 6~20글자"
             required
           />
           <label for="confirm-password">* 비밀번호 확인</label>
@@ -67,6 +67,7 @@
               maxlength="6"
               id="postcode"
               readonly
+              required
             />
 
             <button type="button" id="searchAddress">검색</button>
@@ -78,6 +79,7 @@
               name="memberAddress"
               placeholder="도로명/지번 주소"
               id="address"
+              required
             />
           </div>
 
@@ -87,6 +89,7 @@
               name="memberAddress"
               placeholder="상세 주소"
               id="detailAddress"
+              required
             />
           </div>
         </div>

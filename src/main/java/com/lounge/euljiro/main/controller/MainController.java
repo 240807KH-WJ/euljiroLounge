@@ -17,6 +17,11 @@ public class MainController {
 		return "common/main";
 	}
 	
+	@GetMapping("lounge")
+	public String lounge() {
+		return "lounge/main";
+	}
+	
 	// LoginFilter -> loginError 리다이렉트
 	// -> message 만들어서 메인페이지로 리다이렉트
 	@GetMapping("loginError")

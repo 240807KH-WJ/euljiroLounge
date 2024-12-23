@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'GangwonEduPowerExtraBoldA';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  font-family: GangwonEduPowerExtraBoldA;
+  max-width: 768px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.header {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  background: white;
+}
+
+.menu-container {
+  padding: 1rem;
+  background: white;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.menu-item {
+  border: 1px solid #ddd;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px;
+  background: #fcfcfc;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background: #4169e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.social-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-image: url('/images/tree-bg.jpg');
+  background-size: cover;
+  min-height: 200px;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.social-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+}

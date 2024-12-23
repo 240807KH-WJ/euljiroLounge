@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.lounge.euljiro.post.model.mapper.PostMapper">
+	<!-- namespace에 연결할 Mapper 인터페이스 패키지명+인터페이스명 작성 -> Mapper 인터페이스 메서드 호출 시 
+		xml 파일에 작성된 태그 중 메서드명과 같은 id를 가진 SQL 이 수행됨 -->
+
+	<!-- 게시판 종류 조회 -->
+	<select id="selectPostTypeList">
+		SELECT POST_CODE "postCode", POST_TYPE_NAME "postTypeName"
+		FROM "POST_TYPE"
+		ORDER BY POST_CODE
+	</select>
+
+</mapper>
