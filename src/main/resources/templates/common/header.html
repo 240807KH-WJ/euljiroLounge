@@ -1,0 +1,41 @@
+<div class="header">
+  <section class="logo-section">
+    <div class="logo">
+      <a href="/lounge">
+        <h1>을지로라운지</h1>
+      </a>
+    </div>
+
+    <div class="account-section">
+      <th:block th:unless="${session.loginMember}">
+        <a href="/member/login">로그인</a>
+        |
+        <a href="/member/register">회원가입</a>
+      </th:block>
+      <th:block th:if="${session.loginMember}">
+        <a href="/myPage/info" class="myPage-nickname">
+          <p class="center-bar">[[${session.loginMember.memberNickname}]] 님</p>
+        </a>
+        <a href="/member/logout" class="myPage-nickname">
+          <p>로그아웃</p>
+        </a>
+      </th:block>
+    </div>
+  </section>
+
+  <nav>
+    <ul>
+      <th:block th:each="postType : ${application.postTypeList}">
+        <a
+          th:text="${postType.postTypeName}"
+          th:href="@{/post/{postCode}(postCode = ${postType.postCode})}"
+        >
+          <li>게시판이름</li>
+        </a>
+      </th:block>
+      <a>
+        <li>상담센터 찾기</li>
+      </a>
+    </ul>
+  </nav>
+</div>

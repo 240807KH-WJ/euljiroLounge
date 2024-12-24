@@ -27,61 +27,12 @@ public class MemberController {
 
 	@Autowired // 의존성 주입(DI)
 	private MemberService service;
-
-	// 회원가입 페이지 이동
-	@GetMapping("register")
-	public String register() {
-		return "member/register";
+	
+	// 로그인 페이지 이동
+	@GetMapping("login")
+	public String login() {
+		return "common/login";
 	}
-
-	// 아이디 중복검사 (DB에 중복되는 ID가 존재하는지 검사) - 비동기요청
-	@ResponseBody // 응답 본문(fetch)으로 돌려보냄
-	@GetMapping("checkDupId")
-	public int checkDupId(@RequestParam("memberId") String memberId) {
-
-		// log.debug("memberId : " + memberId);
-
-		return service.checkDupId(memberId);
-	}
-
-	// 닉네임 중복검사 (DB에 중복되는 ID가 존재하는지 검사) - 비동기요청
-	@ResponseBody // 응답 본문(fetch)으로 돌려보냄
-	@GetMapping("checkDupNickname")
-	public int checkDupNickname(@RequestParam("memberNickname") String memberNickname) {
-
-		return service.checkDupNickname(memberNickname);
-	}
-
-	// 회원가입
-	@PostMapping("register")
-	public String register(Member inputMember, 
-			@RequestParam("memberAddress") String[] memberAddress,
-			RedirectAttributes ra) {
-		log.debug("inputMember : " + inputMember);
-
-		// 회원가입 서비스 호출
-		int result = service.register(inputMember, memberAddress);
-
-		String path = null;
-		String message = null;
-
-		if (result > 0) { // 성공 시
-			message = inputMember.getMemberNickname() + "님의 가입을 환영 합니다!";
-			path = "/";
-
-		} else { // 실패
-			message = "회원 가입 실패...";
-			path = "signup";
-		}
-
-		ra.addFlashAttribute("message", message);
-
-		return "redirect:" + path;
-		// 성공 -> redirect:/
-		// 실패 -> redirect:signup (상대경로)
-		// 현재 주소 /member/signup (GET 방식 요청)
-	}
-
 	
 	/** 로그인 
 	 * @param inputMember : 커맨드 객체 (@ModelAttribute 생략)
@@ -153,7 +104,7 @@ public class MemberController {
 		}
 		
 		
-		return "redirect:/lounge"; // 라운지로 redirect
+		return "redirect:/"; // 메인페이지로 redirect
 	}
 	
 	/** 로그아웃 : session에 저장된 로그인된 회원 정보를 없앰
@@ -167,5 +118,62 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+
+	// 회원가입 페이지 이동
+	@GetMapping("register")
+	public String register() {
+		return "member/register";
+	}
+
+	// 아이디 중복검사 (DB에 중복되는 ID가 존재하는지 검사) - 비동기요청
+	@ResponseBody // 응답 본문(fetch)으로 돌려보냄
+	@GetMapping("checkDupId")
+	public int checkDupId(@RequestParam("memberId") String memberId) {
+
+		// log.debug("memberId : " + memberId);
+
+		return service.checkDupId(memberId);
+	}
+
+	// 닉네임 중복검사 (DB에 중복되는 ID가 존재하는지 검사) - 비동기요청
+	@ResponseBody // 응답 본문(fetch)으로 돌려보냄
+	@GetMapping("checkDupNickname")
+	public int checkDupNickname(@RequestParam("memberNickname") String memberNickname) {
+
+		return service.checkDupNickname(memberNickname);
+	}
+
+	// 회원가입
+	@PostMapping("register")
+	public String register(Member inputMember, 
+			@RequestParam("memberAddress") String[] memberAddress,
+			RedirectAttributes ra) {
+		log.debug("inputMember : " + inputMember);
+
+		// 회원가입 서비스 호출
+		int result = service.register(inputMember, memberAddress);
+
+		String path = null;
+		String message = null;
+
+		if (result > 0) { // 성공 시
+			message = inputMember.getMemberNickname() + "님의 가입을 환영 합니다!";
+			path = "/";
+
+		} else { // 실패
+			message = "회원 가입 실패...";
+			path = "signup";
+		}
+
+		ra.addFlashAttribute("message", message);
+
+		return "redirect:" + path;
+		// 성공 -> redirect:/
+		// 실패 -> redirect:signup (상대경로)
+		// 현재 주소 /member/signup (GET 방식 요청)
+	}
+
+	
 	
 }

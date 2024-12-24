@@ -7,4 +7,8 @@ public interface PostService {
 
 	List<Map<String, Object>> selectPostTypeList();
 
+	Map<String, Object> selectPostList(Map<String, Integer> paramMap);
+
+	int postLike(Map<String, Integer> map);
+
 }

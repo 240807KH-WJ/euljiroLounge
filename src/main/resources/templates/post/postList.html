@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>을지로 라운지</title>
+    <link rel="stylesheet" href="/css/lounge.css" />
+    <link rel="stylesheet" href="/css/postList.css" />
+  </head>
+  <body>
+    <main>
+      <th:block th:replace="~{common/header}"></th:block>
+
+      <section class="post-list">
+        <th:block th:each="postType : ${application.postTypeList}">
+          <h1
+            class="post-name"
+            th:if="${postType.postCode} == ${postCode}"
+            th:text="${postType.postTypeName}"
+          >
+            게시판 이름
+          </h1>
+        </th:block>
+
+        <div class="list-wrapper">
+          <!-- 게시글이 존재하지 않을 때 -->
+
+          <!-- 여러행 조회 시 결과가 없을 경우 == List 가 비어있음 -->
+
+          <!-- #lists : 타임리프에서 list 관련 기능을 제공하는 객체 -->
+          <!-- ${#lists.size(postList) == 0} -->
+          <th:block th:if="${#lists.isEmpty(postList)}">
+            <p>게시글이 존재하지 않습니다.</p>
+          </th:block>
+
+          <!-- 게시글이 존재할 때 -->
+          <th:block th:unless="${#lists.isEmpty(postList)}">
+            <div th:each="post, iterStat : ${postList}" th:object="${post}">
+              <p th:text="*{postTitle}">게시글 제목</p>
+              <p
+                th:unless="${param.key}"
+                th:href="@{/post/{postCode}/{postNo} (postCode=${postCode}, postNo=*{postNo}, cp=${pagination.currentPage})}"
+                th:text="*{postContent}">게시글 내용</p>
+              <p th:text="*{postCreateDate}">글작성시간</p>
+
+            </div>
+          </th:block>
+        </div>
+
+        <div class="btn-area">
+          <!-- 로그인 상태일 때만 글쓰기 버튼 노출 -->
+          <button id="insertBtn" th:if="${session.loginMember}">글쓰기</button>
+        </div>
+
+        <!-- ============================================================================================================== -->
+
+        <!-- 게시글이 있을 때만 페이지네이션이 보이게 할 예정 -->
+        <th:block th:unless="${#lists.isEmpty(postList)}">
+          <div class="pagination-area">
+            
+            <ul
+              class="pagination"
+              th:unless="${param.key}"
+              th:object="${pagination}"
+            >
+              <!-- 첫 페이지로 이동 -->
+              <li>
+                <a th:href="@{/post/{postCode}(postCode=${postCode}, cp=1)}"
+                  >&lt;&lt;</a
+                >
+              </li>
+
+              <!-- 이전 목록 마지막 번호로 이동 -->
+              <li>
+                <a
+                  th:href="@{/post/{postCode}(postCode=${postCode}, cp=*{prevPage})}"
+                  >&lt;</a
+                >
+              </li>
+
+              <!-- 특정 페이지로 이동 -->
+
+              <th:block th:each="i : *{#numbers.sequence(startPage, endPage)}">
+                <!-- 현재 보고있는 페이지 -->
+                <li th:if="${i} == *{currentPage}">
+                  <a class="current" th:text="${i}">현재페이지</a>
+                </li>
+
+                <!-- 보고있지 않은 페이지 -->
+                <li th:unless="${i} == *{currentPage}">
+                  <a
+                    th:href="@{/post/{postCode}(postCode=${postCode}, cp=${i})}"
+                    th:text="${i}"
+                    >이동할 페이지</a
+                  >
+                </li>
+              </th:block>
+
+              <!-- 다음 목록 시작 번호로 이동 -->
+              <li>
+                <a
+                  th:href="@{/post/{postCode}(postCode=${postCode}, cp=*{nextPage})}"
+                  >&gt;</a
+                >
+              </li>
+
+              <!-- 끝 페이지로 이동 -->
+              <li>
+                <a
+                  th:href="@{/post/{postCode}(postCode=${postCode}, cp=*{maxPage})}"
+                  >&gt;&gt;</a
+                >
+              </li>
+            </ul>
+          </div>
+        </th:block>
+      </section>
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <script th:inline="javascript">
+      const postCode = /*[[${postCode}]]*/ "게시판 코드 번호";
+      // @PathVariable 을 통해 Controller에서 request scope에 세팅된 postCode
+    </script>
+
+    <script src="/js/postList.js"></script>
+  </body>
+</html>
