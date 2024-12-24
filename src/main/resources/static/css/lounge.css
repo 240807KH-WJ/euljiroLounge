@@ -5,6 +5,10 @@
   font-style: normal;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 
 body {
   font-family: GangwonEduPowerExtraBoldA;
@@ -150,7 +154,7 @@ body {
   border-radius: 8px;
   background: #FBFCEA;
   font-size: 30px;
-  line-height: 150px;
+  line-height: 90px;
   height: 150px;
   cursor: pointer;
 }

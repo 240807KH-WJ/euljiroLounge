@@ -1,4 +1,7 @@
 /* mindPostitList.css */
+* {
+  box-sizing: border-box;
+}
 
 .post-list {
   max-width: 1200px;

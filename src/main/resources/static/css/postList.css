@@ -1,5 +1,9 @@
 /* postList.css */
 
+* {
+  box-sizing: border-box;
+}
+
 .post-list {
   max-width: 900px;
   margin: 2rem auto;

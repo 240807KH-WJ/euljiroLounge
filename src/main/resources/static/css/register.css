@@ -5,6 +5,9 @@
   font-style: normal;
 }
 
+* {
+  box-sizing: border-box;
+} 
 /* 전체 스크롤바 스타일 설정 */
 ::-webkit-scrollbar {
   width: 8px; /* 스크롤바의 너비 */

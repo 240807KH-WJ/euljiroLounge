@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>심리상담 글작성</title>
+    <link rel="stylesheet" href="/css/lounge.css" />
+    <link rel="stylesheet" href="/css/postInsert.css" />
+  </head>
+  <body>
+    <main>
+      <th:block th:replace="~{common/header}"></th:block>
+
+      <form action="/post/insert" method="post" class="insert-form">
+        <section class="insert-section">
+          <div class="menu-title">심리상담</div>
+          <input
+            type="text"
+            id="postTitle"
+            name="postTitle"
+            placeholder="당신의 고민을 한줄로 요약해 주세요."
+            required
+          />
+          <textarea id="postContent" 
+          name="postContent" 
+          placeholder="전문가의 답변을 받기위해 자세하게 작성해주세요."></textarea>
+          
+          <button type="submit" id="writebtn">작성 완료</button>
+        </section>
+      </form>
+    </main>
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <script src="/js/postInsert.js"></script>
+  </body>
+</html>

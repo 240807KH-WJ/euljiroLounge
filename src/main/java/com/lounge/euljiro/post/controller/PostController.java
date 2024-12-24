@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.lounge.euljiro.member.model.dto.Member;
+import com.lounge.euljiro.post.model.dto.Post;
 import com.lounge.euljiro.post.model.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -77,5 +78,22 @@ public class PostController {
 	@PostMapping("like")
 	public int postLike(@RequestBody Map<String, Integer> map) {
 		return service.postLike(map);
+	}
+	
+	/** 게시글 작성 페이지 이동
+	 * @return
+	 */
+	@GetMapping("insert")
+	public String postInsert() {
+		return "post/insert";
+	}
+	
+	/** 게시글 작성(INSERT) - 심리상담
+	 * @return
+	 */
+	@PostMapping("insert")
+	public String postInsert(Post post) {
+		log.debug("post {} ", post);
+		return "";
 	}
 }
