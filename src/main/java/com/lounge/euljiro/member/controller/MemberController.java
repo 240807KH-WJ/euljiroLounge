@@ -56,11 +56,14 @@ public class MemberController {
 		// - 체크가  안된 경우 : null
 		
 		// 로그인 서비스 호출
+		String path = null;
+		
 		try {
 			Member loginMember = service.login(inputMember);
 			
 			// 로그인 실패 시
 			if(loginMember == null) {
+				path = "/member/login";
 				ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			} else {
 				
@@ -96,6 +99,8 @@ public class MemberController {
 				// 응답 객체에 쿠키 추가 -> 클라이언트 전달
 				resp.addCookie(cookie);
 				
+				path = "/";
+				
 			}
 			
 		} catch (Exception e) {
@@ -104,7 +109,7 @@ public class MemberController {
 		}
 		
 		
-		return "redirect:/"; // 메인페이지로 redirect
+		return "redirect:" + path; // 메인페이지로 redirect
 	}
 	
 	/** 로그아웃 : session에 저장된 로그인된 회원 정보를 없앰

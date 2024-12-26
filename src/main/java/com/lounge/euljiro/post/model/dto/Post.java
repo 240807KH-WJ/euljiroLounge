@@ -31,5 +31,8 @@ public class Post {
 	
 	// POST_LIKE 테이블 조인
 	private int postLikeCheck; 
+	
+	// 좋아요 개수
+	private int postLikeCount;
 
 }

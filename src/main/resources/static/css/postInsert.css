@@ -18,7 +18,7 @@
 }
 
 .menu-title {
-  width: 100px;
+  width: 120px;
   font-size: 20px;
   color: #333333;
   margin: 20px 0px;
@@ -87,4 +87,92 @@
     font-size: 0.9rem;
     padding: 10px;
   }
+}
+
+/* 문의게시판 이미지 부분 */
+.qnaImg-box {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: #f8f8f8;
+  margin-bottom: 20px;
+}
+
+.qnaImg-box:hover {
+  border-color: #999;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.qnaImg-box label {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qnaImg-box .preview {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.qnaImg-box .inputImage {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.qnaImg-box .delete-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.qnaImg-box:hover .delete-image {
+  opacity: 1;
+}
+
+.qnaImg-box .delete-image:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: #ff4444;
+}
+
+/* 이미지가 없을 때 표시할 플레이스홀더 스타일 */
+.qnaImg-box label::before {
+  content: '이미지 업로드';
+  display: block;
+  color: #999;
+  font-size: 14px;
+}
+
+/* 이미지가 있을 때는 플레이스홀더 텍스트 숨기기 */
+.qnaImg-box label:has(img:not([src=""])) ::before {
+  display: none;
 }

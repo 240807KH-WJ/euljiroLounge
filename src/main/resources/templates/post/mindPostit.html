@@ -41,10 +41,17 @@
 
           <!-- 게시글이 존재할 때 -->
           <th:block th:unless="${#lists.isEmpty(postList)}">
-            <div th:each="post, iterStat : ${postList}" th:object="${post}">
+            <div
+              th:each="post, iterStat : ${postList}"
+              th:object="${post}"
+              class="postit-box"
+            >
               <!-- 좋아요 하트 -->
               <span class="like-area">
                 <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
+                
+                <span class="totalLikeCount" th:text="*{postLikeCount}"></span>
+              
                 <i
                   class="fa-heart postitLike"
                   th:classappend="*{postLikeCheck == 1} ? fa-solid : fa-regular"
@@ -64,7 +71,9 @@
 
         <div class="btn-area">
           <!-- 로그인 상태일 때만 글쓰기 버튼 노출 -->
-          <button id="insertBtn" th:if="${session.loginMember}">글쓰기</button>
+          <button id="postit-insertBtn" th:if="${session.loginMember}">
+            글쓰기
+          </button>
         </div>
 
         <!-- ============================================================================================================== -->
@@ -132,6 +141,52 @@
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block>
+
+    <!-- 포스트잇 작성 모달 -->
+    <th:block th:if="${session.loginMember}">
+      <div class="postit-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>포스트잇 작성하기</h3>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <textarea
+              id="postContent"
+              placeholder="내용을 입력해주세요"
+              maxlength="500"
+            ></textarea>
+            <p class="char-count"><span id="currentCount">0</span>/500</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="submitPostit">등록</button>
+          </div>
+        </div>
+      </div>
+    </th:block>
+
+    <!-- 포스트잇 상세 조회 모달 -->
+    <div class="postit-detail-modal">
+      <div class="detail-modal-content">
+        <div class="detail-modal-header">
+          <div class="writer-info">
+            <span class="writer-name"></span>
+            <span class="post-date"></span>
+          </div>
+          <span class="close-detail-modal">&times;</span>
+        </div>
+        <div class="detail-modal-body">
+          <p class="detail-content"></p>
+        </div>
+        <div class="detail-modal-footer">
+          <div class="like-info">
+            <i class="fa-heart detail-like"></i>
+            <span class="like-count">0</span>
+          </div>
+          <button type="button" id="deletePostit" class="hidden">삭제</button>
+        </div>
+      </div>
+    </div>
 
     <script th:inline="javascript">
       // - loginMember가 null 인 경우 null 반환

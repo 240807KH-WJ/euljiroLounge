@@ -28,7 +28,11 @@
             , (SELECT COUNT(*)
 			FROM "POST_LIKE"
 			WHERE POST_NO = P.POST_NO
-			AND MEMBER_NO = #{memberNo}) POST_LIKE_CHECK
+			AND MEMBER_NO = #{memberNo}) POST_LIKE_CHECK,
+			
+			(SELECT COUNT(*) 
+			FROM "POST_LIKE" PL
+			WHERE PL.POST_NO = P.POST_NO) POST_LIKE_COUNT
         </if>
 		FROM "POST" P
 		JOIN "MEMBER" USING(MEMBER_NO)
@@ -55,4 +59,48 @@
 		SELECT COUNT(*) FROM "POST_LIKE"
 		WHERE POST_NO = #{postNo}
 	</select>
+	
+	<!-- 게시글 삽입 -->
+	<insert id="postInsert">
+		INSERT INTO "POST" VALUES (
+	    SEQ_POST_NO.NEXTVAL, 
+	    #{postTitle}, 
+	    #{postContent}, 
+	    SYSDATE, 
+	    DEFAULT, 
+	   	DEFAULT,
+		<if test="postCode == 3">
+            #{qnaImg},
+        </if>
+        <if test="postCode != 3">
+        	NULL, 
+        </if>
+	   	#{postCode}, 
+	   	#{memberNo}
+	)
+	</insert>
+	
+	<select id="postSelect">
+		SELECT POST_NO, POST_TITLE, POST_CONTENT, MEMBER_NO, MEMBER_NICKNAME, 
+		READ_COUNT, 
+		TO_CHAR(POST_CREATE_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') POST_CREATE_DATE,
+		(SELECT COUNT(*) FROM "POST_LIKE" PL
+		WHERE PL.POST_NO = P.POST_NO) POST_LIKE_COUNT
+		<if test="postCode == 2">
+			, (SELECT COUNT(*)
+			FROM "POST_LIKE"
+			WHERE POST_NO = P.POST_NO
+			AND MEMBER_NO = #{memberNo}) POST_LIKE_CHECK
+		</if>
+		<if test="postCode == 3">
+           , QNA_IMG
+        </if>
+		FROM "POST" P
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE POST_DEL_FL = 'N'
+		AND POST_NO = #{postNo}
+		AND POST_CODE = #{postCode}
+	</select>
+	
+	
 </mapper>

@@ -23,4 +23,8 @@ public interface PostMapper {
 
 	int selectLikeCount(Integer integer);
 
+	int postInsert(Post post);
+
+	Post postSelect(Post post);
+
 }
