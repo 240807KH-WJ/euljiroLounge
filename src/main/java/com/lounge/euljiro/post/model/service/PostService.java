@@ -30,5 +30,11 @@ public interface PostService {
 	 * @return
 	 */
 	Post postSelect(Post post);
+ 
+	/** 게시글 삭제
+	 * @param post
+	 * @return
+	 */
+	int postDelete(Post post);
 
 }

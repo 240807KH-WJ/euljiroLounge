@@ -27,4 +27,6 @@ public interface PostMapper {
 
 	Post postSelect(Post post);
 
+	int postDelete(Post post);
+
 }

@@ -160,4 +160,10 @@ public class PostServiceImpl implements PostService {
 	public Post postSelect(Post post) {
 		return mapper.postSelect(post);
 	}
+	
+	// 게시글 삭제
+	@Override
+	public int postDelete(Post post) {
+		return mapper.postDelete(post);
+	}
 }
