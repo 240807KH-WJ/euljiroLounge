@@ -124,6 +124,13 @@ body {
 
 }
 
+.announcement > h1{
+  background-color: red;
+  color: white;
+  line-height: 60px;
+  text-align: center;
+}
+
 
 .account-section a{
   cursor: pointer;
