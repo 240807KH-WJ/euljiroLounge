@@ -37,4 +37,10 @@ public interface PostService {
 	 */
 	int postDelete(Post post);
 
+	/** 조회수증가
+	 * @param postNo
+	 * @return
+	 */
+	int updateReadCount(int postNo);
+
 }

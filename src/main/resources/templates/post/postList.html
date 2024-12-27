@@ -36,13 +36,15 @@
           <!-- 게시글이 존재할 때 -->
           <th:block th:unless="${#lists.isEmpty(postList)}">
             <div th:each="post, iterStat : ${postList}" th:object="${post}">
-              <p th:text="*{postTitle}">게시글 제목</p>
-              <p
-                th:unless="${param.key}"
+              <a
                 th:href="@{/post/{postCode}/{postNo} (postCode=${postCode}, postNo=*{postNo}, cp=${pagination.currentPage})}"
-                th:text="*{postContent}">게시글 내용</p>
-              <p th:text="*{postCreateDate}">글작성시간</p>
-
+              >
+                <p th:text="*{postTitle}">게시글 제목</p>
+                <p th:unless="${param.key}" th:text="*{postContent}">
+                  게시글 내용
+                </p>
+                <p th:text="*{postCreateDate}">글작성시간</p>
+              </a>
             </div>
           </th:block>
         </div>
@@ -57,7 +59,6 @@
         <!-- 게시글이 있을 때만 페이지네이션이 보이게 할 예정 -->
         <th:block th:unless="${#lists.isEmpty(postList)}">
           <div class="pagination-area">
-            
             <ul
               class="pagination"
               th:unless="${param.key}"

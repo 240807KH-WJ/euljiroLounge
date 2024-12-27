@@ -29,4 +29,8 @@ public interface PostMapper {
 
 	int postDelete(Post post);
 
+	int updateReadCount(int postNo);
+
+	int selectReadCount(int postNo);
+
 }

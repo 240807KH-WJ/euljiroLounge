@@ -1,11 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="|${post.postNo}번 글|">게시판 이름</title>
+
+    <!-- font awesome 라이브러리 추가 + key 등록 -->
+    <script
+      src="https://kit.fontawesome.com/e5fede6c09.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="/css/lounge.css" />
+    <link rel="stylesheet" href="/css/postWrite.css" />
+  </head>
+  <body>
+    <main>
+      <th:block th:replace="~{common/header}"></th:block>
+
+      <section class="post-detail" th:object="${post}">
+        <!-- 제목 -->
+        <h1 class="post-title" th:text="*{postTitle}">게시글 제목</h1>
+
+        <!-- 프로필 + 닉네임 + 작성일 + 조회수 -->
+        <div class="post-header">
+          <div class="post-writer">
+            <span th:text="*{memberNickname}">작성자 닉네임</span>
+
+            <!-- 좋아요 하트 -->
+            <span class="like-area">
+              <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
+              <i
+                class="fa-heart"
+                id="postLike"
+                th:attr="data-like-status=*{postLikeCheck}, data-post-no=*{postNo}"
+                th:classappend="*{postLikeCheck == 1} ? fa-solid : fa-regular"
+              ></i>
+
+              <!-- 좋아요 개수 -->
+              <span th:text="*{postLikeCount}">0</span>
+            </span>
+          </div>
+
+          <div class="post-info">
+            <p><span>작성일</span> [[*{postCreateDate}]]</p>
+
+            <p><span>조회수</span> [[*{readCount}]]</p>
+          </div>
+        </div>
+
+        <!-- 내용 -->
+        <div class="post-content" th:text="*{postContent}">내용</div>
+
+        <!-- 문의게시판의 경우 qnaImg 도 출력 예정 -->
+        <section th:if="*{qnaImg}" class="qnaImg-section">
+          <img th:src="*{qnaImg}">
+          <a th:href="*{qnaImg}"
+          th:download="qnaImg">다운로드</a>   
+        </section>
+
+        <!-- 버튼 영역-->
+        <div class="post-btn-area">
+          <!-- 로그인한 회원과 게시글 작성한 회원의 번호가 같은 경우 -->
+
+          <th:block th:if="${post.memberNo == session.loginMember?.memberNo}">
+            <button id="updateBtn">수정</button>
+            <button id="deleteBtn">삭제</button>
+          </th:block>
+
+          <button id="goToListBtn">목록으로</button>
+        </div>
+      </section>
+
+      <!-- 댓글 영역-->
+      <th:block th:replace="~{post/comment}"></th:block>
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <script th:inline="javascript">
+      // - loginMember가 null 인 경우 null 반환
+      const loginMemberNo =
+        /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
+
+      // 현재 게시글 번호를 전역 변수로 저장
+      const postNo = /*[[${post.postNo}]]*/ "게시글 번호";
+
+      // 현재 게시글 좋아요 여부를 전역 변수로 저장
+      let likeCheck = /*[[${post.postLikeCheck}]]*/ "좋아요 여부";
+
+      const userDefaultIamge = /*[[#{user.default.image}]]*/ "기본이미지";
+    </script>
+
+    <script src="/js/postDetail.js"></script>
+    <script src="/js/comment.js"></script>
+  </body>
 </html>

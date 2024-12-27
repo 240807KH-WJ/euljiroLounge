@@ -45,21 +45,35 @@
 
 /* 게시글 내용 스타일 */
 .list-wrapper p {
+  height: 40px; 
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis; /* 넘친 텍스트를 ...로 표시 */
+  text-align: center; /* 텍스트 가로 정렬 */
+  word-break: break-word; /* 단어가 길어지면 강제로 줄 바꿈 */
+
+  /* 멀티라인 ellipsis 처리 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2줄까지만 보이도록 제한 */
+  -webkit-box-orient: vertical; /* 수직 박스로 설정 */
   margin: 0;
+}
+
+.list-wrapper a {
+  text-decoration: none;
 }
 
 .list-wrapper p:first-child {  /* 게시글 제목 */
   font-size: 1.1rem;
   color: #333;
-  margin-bottom: 0.5rem;
+  line-height: 30px;
 }
 
 .list-wrapper p:nth-child(2) {  /* 게시글 내용 */
   font-size: 0.9rem;
   font-weight: 500;
   color: #666;
-  margin-bottom: 1rem;
-  line-height: 1.4;
+  line-height: 20px;
 }
 
 .list-wrapper p:last-child {  /* 글작성시간 */
@@ -67,6 +81,7 @@
   color: #888;
   padding-top: 0.5rem;
   border-top: 1px solid #eee;
+  line-height: 30px;
 }
 
 /* 게시글 없을 때 메시지 */

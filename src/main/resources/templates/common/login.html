@@ -6,8 +6,8 @@
     <title>을지로 라운지</title>
 
     <link rel="stylesheet" href="/css/main.css" />
-	
-	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
   </head>
   <body>
     <div class="container">
@@ -40,14 +40,19 @@
             <a href="/member/register">회원가입</a>
           </p>
           <p>
-            계정을 잊으셨나요? 
-			<a href="/member/findId">아이디찾기</a> 
-			/
+            계정을 잊으셨나요?
+            <a href="/member/findId">아이디찾기</a>
+            /
             <a href="/member/findPw">비밀번호찾기</a>
           </p>
         </div>
       </form>
     </div>
-	
+
+    <script th:inline="javascript">
+      const message = /*[[${message}]]*/ "전달 받은 message";
+
+      if (message != null) alert(message);
+    </script>
   </body>
 </html>

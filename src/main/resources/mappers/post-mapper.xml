@@ -111,5 +111,18 @@
 		AND POST_NO = #{postNo}
 	</update>
 	
+	<!--  조회 수 1 증가  -->
+	<update id="updateReadCount">
+		UPDATE "POST" SET
+		READ_COUNT = READ_COUNT + 1
+		WHERE POST_NO = #{postNo}
+	</update>
+
+	<!-- 조회 수 조회  -->
+	<select id="selectReadCount">
+		SELECT READ_COUNT
+		FROM "POST"
+		WHERE POST_NO = #{postNo}
+	</select>
 	
 </mapper>

@@ -116,7 +116,7 @@ public class PostServiceImpl implements PostService {
 	// 문의글 작성 + 이미지
 	@Override
 	public int postInsert(Post post, MultipartFile qnaImg) throws IllegalStateException, IOException {
-		
+
 		// 이미지 경로
 		String imgPath = null;
 
@@ -154,16 +154,31 @@ public class PostServiceImpl implements PostService {
 		return result;
 	}
 
-
 	// 게시글 조회
 	@Override
 	public Post postSelect(Post post) {
 		return mapper.postSelect(post);
 	}
-	
+
 	// 게시글 삭제
 	@Override
 	public int postDelete(Post post) {
 		return mapper.postDelete(post);
+	}
+
+	// 조회수 증가
+	@Override
+	public int updateReadCount(int postNo) {
+
+		// 1. 조회 수 1 증가(UPDATE)
+		int result = mapper.updateReadCount(postNo);
+
+		// 2. 현재 조회 수 조회
+		if (result > 0) {
+			return mapper.selectReadCount(postNo);
+		}
+
+		// 실패한 경우 -1 반환
+		return -1;
 	}
 }
