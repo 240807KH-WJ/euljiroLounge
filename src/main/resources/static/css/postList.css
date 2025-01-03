@@ -1,0 +1,176 @@
+/* postList.css */
+
+* {
+  box-sizing: border-box;
+}
+
+.post-list {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.post-name {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.list-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* 게시글 카드 스타일 */
+.list-wrapper > div {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.list-wrapper > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 게시글 내용 스타일 */
+.list-wrapper p {
+  height: 40px; 
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis; /* 넘친 텍스트를 ...로 표시 */
+  text-align: center; /* 텍스트 가로 정렬 */
+  word-break: break-word; /* 단어가 길어지면 강제로 줄 바꿈 */
+
+  /* 멀티라인 ellipsis 처리 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2줄까지만 보이도록 제한 */
+  -webkit-box-orient: vertical; /* 수직 박스로 설정 */
+  margin: 0;
+}
+
+.list-wrapper a {
+  text-decoration: none;
+}
+
+.list-wrapper p:first-child {  /* 게시글 제목 */
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 30px;
+}
+
+.list-wrapper p:nth-child(2) {  /* 게시글 내용 */
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  line-height: 20px;
+}
+
+.list-wrapper p:last-child {  /* 글작성시간 */
+  font-size: 0.9rem;
+  color: #888;
+  padding-top: 0.5rem;
+  border-top: 1px solid #eee;
+  line-height: 30px;
+}
+
+/* 게시글 없을 때 메시지 */
+.list-wrapper > p {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* 버튼 영역 */
+.btn-area {
+  margin: 2rem 0;
+  text-align: right;
+}
+
+#insertBtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+#insertBtn:hover {
+  background-color: #0056b3;
+}
+
+/* 페이지네이션 영역 */
+.pagination-area {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.pagination li {
+  margin: 0 2px;
+}
+
+.pagination a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: #555;
+  text-decoration: none;
+  transition: all 0.2s;
+  background: white;
+  border: 1px solid #e0e0e0;
+}
+
+.pagination a:hover {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.pagination a.current {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  font-weight: 600;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .list-wrapper {
+      grid-template-columns: 1fr;
+  }
+
+  .post-name {
+      font-size: 1.5rem;
+  }
+
+  .pagination a {
+      width: 32px;
+      height: 32px;
+  }
+}

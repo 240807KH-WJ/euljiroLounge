@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>을지로 라운지</title>
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <form class="login-form" action="/member/login" method="post">
+        <h1>을지로 라운지</h1>
+        <div class="form-group">
+          <label for="memberId">ID</label>
+          <input
+            type="text"
+            id="memberId"
+            name="memberId"
+            placeholder="아이디를 입력해주세요"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="memberPw">Password</label>
+          <input
+            type="password"
+            id="memberPw"
+            name="memberPw"
+            placeholder="비밀번호를 입력해주세요"
+            required
+          />
+        </div>
+        <button type="submit" class="btn">로그인</button>
+        <div class="footer">
+          <p>
+            회원이 아니신가요?
+            <a href="/member/register">회원가입</a>
+          </p>
+          <p>
+            계정을 잊으셨나요?
+            <a href="/member/findId">아이디찾기</a>
+            /
+            <a href="/member/findPw">비밀번호찾기</a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <script th:inline="javascript">
+      const message = /*[[${message}]]*/ "전달 받은 message";
+
+      if (message != null) alert(message);
+    </script>
+  </body>
+</html>

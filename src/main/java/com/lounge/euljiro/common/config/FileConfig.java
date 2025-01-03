@@ -42,7 +42,7 @@ public class FileConfig implements WebMvcConfigurer{
 	private String qnaResourceHandler;  //  /images/qna/**
 	
 	@Value("${my.qna.resource-location}")
-	private String qnaResourceLocation;  //  file:///C:/uploadFiles/qna/
+	private String qnaResourceLocation;  //  file:///C:/wj-uploadFiles/qna/
 	
 	
 
@@ -60,7 +60,7 @@ public class FileConfig implements WebMvcConfigurer{
 	
 		registry
 		.addResourceHandler(qnaResourceHandler)  //  /images/qna/**
-		.addResourceLocations(qnaResourceLocation);  //  file:///C:/uploadFiles/qna/
+		.addResourceLocations(qnaResourceLocation);  //  file:///C:/wj-uploadFiles/qna/
 		
 		
 

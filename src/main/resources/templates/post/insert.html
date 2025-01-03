@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시글 작성</title>
+    <link rel="stylesheet" href="/css/lounge.css" />
+    <link rel="stylesheet" href="/css/postInsert.css" />
+  </head>
+  <body>
+    <main>
+      <th:block th:replace="~{common/header}"></th:block>
+
+      <form th:action="@{/post/{postCode}/insert(postCode=${postCode})}" 
+        method="post" class="insert-form" enctype="multipart/form-data">
+        <section class="insert-section">
+          <div class="menu-title" th:if="${postCode == 1}">
+            심리상담
+          </div>
+          <div class="menu-title" th:if="${postCode == 3}">
+            문의글작성
+          </div>
+
+          <!-- 심리상담 input -->
+          <th:block th:if="${postCode == 1}">
+            <input
+              type="text"
+              id="postTitle"
+              name="postTitle"
+              placeholder="당신의 고민을 한줄로 요약해 주세요."
+              required
+            />
+            <textarea id="postContent" 
+            name="postContent" 
+            placeholder="전문가의 답변을 받기위해 자세하게 작성해주세요."></textarea>
+          </th:block>
+
+          <!-- 문의글작성 input -->
+          <th:block th:if="${postCode == 3}">
+            <input
+              type="text"
+              id="postTitle"
+              name="postTitle"
+              placeholder="문의 사항에 대해서 알려주세요."
+              required
+            />
+            <textarea id="postContent" 
+            name="postContent" 
+            placeholder="문의 내용에 대해서 자세하게 작성해주세요."></textarea>
+            
+            <div class="qnaImg-box">
+              <label for="qnaImg">
+                  <img class="preview" src="">
+              </label>
+              <input type="file" name="img" class="inputImage" id="qnaImg" accept="image/*">
+              <span class="delete-image">&times;</span>
+            </div>
+          </th:block>
+          
+          <button type="submit" id="writebtn">작성 완료</button>
+        </section>
+      </form>
+    </main>
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <script src="/js/postInsert.js"></script>
+  </body>
+</html>

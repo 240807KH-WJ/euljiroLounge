@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/register.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="signUpForm" class="register-form" action="/member/register" method="post">
+        <h1>을지로 라운지 회원가입</h1>
+
+        <div class="form-group">
+          <label for="memberId">* ID</label>
+          <div class="id-section">
+            <input
+              type="text"
+              id="memberId"
+              name="memberId"
+              placeholder="영어대소문자 5~15글자"
+              required
+            />
+            <button type="button" class="btn" onclick="checkDupID()">
+              중복검사
+            </button>
+          </div>
+          <div id="memberId-message" class="message"></div>
+
+          <label for="memberNickname">* 닉네임</label>
+          <input
+            type="text"
+            id="memberNickname"
+            name="memberNickname"
+            placeholder="한글 2~10글자"
+            required
+          />
+          <div id="memberNickname-message" class="message"></div>
+
+          <label for="memberPw">* 비밀번호</label>
+          <input
+            type="password"
+            id="memberPw"
+            name="memberPw"
+            placeholder="영어,숫자,특수문자 포함 6~20글자"
+            required
+          />
+          <label for="confirm-password">* 비밀번호 확인</label>
+          <input
+            type="password"
+            id="memberPwConfirm"
+            name="memberPwConfirm"
+            placeholder="비밀번호 확인"
+            required
+          />
+          <div id="password-message" class="message"></div>
+
+          <!-- 주소 입력 -->
+          <label for="memberAddress">* 주소</label>
+
+          <div class="signUp-input-area">
+            <input
+              type="text"
+              name="memberAddress"
+              placeholder="우편번호"
+              maxlength="6"
+              id="postcode"
+              readonly
+              required
+            />
+
+            <button type="button" id="searchAddress">검색</button>
+          </div>
+
+          <div class="signUp-input-area">
+            <input
+              type="text"
+              name="memberAddress"
+              placeholder="도로명/지번 주소"
+              id="address"
+              required
+            />
+          </div>
+
+          <div class="signUp-input-area">
+            <input
+              type="text"
+              name="memberAddress"
+              placeholder="상세 주소"
+              id="detailAddress"
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn">가입하기</button>
+
+        <div class="footer">
+          <p>이미 계정이 있으신가요? <a href="/member/login">로그인하기</a></p>
+        </div>
+      </form>
+    </div>
+
+    <!-- 다음 주소 API 추가 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <!-- 회원 가입 JS 추가 -->
+    <script src="/js/register.js"></script>
+  </body>
+</html>

@@ -1,0 +1,387 @@
+/* mindPostitList.css */
+* {
+  box-sizing: border-box;
+}
+
+.post-list {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.post-name {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.postitLike {
+  color : red;
+  cursor: pointer;
+}
+
+.list-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* 포스트잇 카드 스타일 */
+.list-wrapper > div {
+  aspect-ratio: 1;
+  padding: 1.5rem;
+  position: relative;
+  transition: transform 0.2s;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 수직 중앙 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  cursor: pointer;
+}
+
+/* 랜덤 배경색 클래스들 */
+.list-wrapper > div:nth-child(4n+1) {
+  background-color: #E8F5E9; /* 연한 초록 */
+}
+
+.list-wrapper > div:nth-child(4n+2) {
+  background-color: #FFF3E0; /* 연한 주황 */
+}
+
+.list-wrapper > div:nth-child(4n+3) {
+  background-color: #FFE5F1; /* 연한 분홍 */
+}
+
+.list-wrapper > div:nth-child(4n+4) {
+  background-color: #E3F2FD; /* 연한 파랑 */
+}
+
+.list-wrapper > div:hover {
+  transform: rotate(-2deg) translateY(-5px);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 포스트잇 내용 스타일 */
+.list-wrapper p {
+  height: 112px; /* 4줄 텍스트 높이 설정 (각 줄의 기본 높이를 고려) */
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis; /* 넘친 텍스트를 ...로 표시 */
+  line-height: 1.5;
+  text-align: center; /* 텍스트 가로 정렬 */
+  word-break: break-word; /* 단어가 길어지면 강제로 줄 바꿈 */
+
+  /* 멀티라인 ellipsis 처리 */
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* 4줄까지만 보이도록 제한 */
+  -webkit-box-orient: vertical; /* 수직 박스로 설정 */
+  margin: 0;
+}
+
+.like-area {
+  position: absolute;  /* 절대 위치 지정 */
+  top: 20px;  /* 상단에서 10px 간격 */
+  right: 20px;  /* 오른쪽에서 10px 간격 */
+}
+
+/* 게시글 없을 때 메시지 */
+.list-wrapper > p {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* 버튼 영역 */
+.btn-area {
+  margin: 2rem 0;
+  text-align: right;
+}
+
+#postit-insertBtn {
+  background-color: #FF69B4;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#postit-insertBtn:hover {
+  background-color: #FF1493;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* 페이지네이션 영역 */
+.pagination-area {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.pagination li {
+  margin: 0 2px;
+}
+
+.pagination a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: #555;
+  text-decoration: none;
+  transition: all 0.2s;
+  background: white;
+  border: 1px solid #e0e0e0;
+}
+
+.pagination a:hover {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.pagination a.current {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  font-weight: 600;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .list-wrapper {
+      grid-template-columns: 1fr;
+  }
+
+  .post-name {
+      font-size: 1.5rem;
+  }
+
+  .pagination a {
+      width: 32px;
+      height: 32px;
+  }
+}
+
+/* 모달 기본 스타일 */
+.postit-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff8dc; /* 포스트잇 느낌의 배경색 */
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.close-modal {
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.close-modal:hover {
+  color: #000;
+}
+
+.modal-body textarea {
+  width: 100%;
+  height: 200px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.modal-body textarea:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.char-count {
+  text-align: right;
+  color: #666;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.modal-footer {
+  text-align: right;
+  margin-top: 15px;
+}
+
+#submitPostit {
+  padding: 8px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#submitPostit:hover {
+  background-color: #45a049;
+}
+
+/* 모달 표시 애니메이션 */
+.show {
+  display: block;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.postit-detail-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.detail-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff8dc;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detail-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.writer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.writer-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.post-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.close-detail-modal {
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.detail-modal-body {
+  min-height: 100px;
+  margin: 20px 0;
+}
+
+.detail-content {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.detail-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.like-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-like {
+  cursor: pointer;
+  font-size: 18px;
+  color: red;
+}
+
+#deletePostit {
+  padding: 8px 16px;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#deletePostit:hover {
+  background-color: #cc0000;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 모달 표시 애니메이션 */
+.show {
+  display: block;
+  animation: fadeIn 0.3s;
+}
